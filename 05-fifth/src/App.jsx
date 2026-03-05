@@ -17,7 +17,7 @@ const App = () => {
 
     setError(false)
  
-    const newTask = [...task]
+    const newTask = [...task];
 
     
     newTask.push({title,details})
@@ -26,6 +26,14 @@ const App = () => {
     
     setTitle('')
     setDetails('')
+
+    }
+    const deleteNote = (idx) => {
+      const newTask = [...task];
+
+      newTask.splice(idx,1)
+
+      setTask(newTask)
   }
 
 
@@ -59,9 +67,16 @@ const App = () => {
         <div className='flex flex-wrap gap-5 mt-5 overflow-auto h-full'>
          {task.map(function(elem,idx){
 
-          return  <div key={idx} className="h-52 w-40 rounded-2xl text-black p-4 bg-amber-50">
-            <h3 className='leading-tight text-xl font-bold'>{elem.title}</h3>
+          return  <div key={idx} className="flex flex-col justify-between items-start relative h-52 w-40 rounded-2xl text-black p-4 bg-amber-50">
+           <div>
+             <h3 className='leading-tight text-xl font-bold'>{elem.title}</h3>
             <p className= 'mt-2 leading-tight font-medium text-gray-700' >{elem.details}</p>
+           </div>
+           <button
+           onClick={() => {
+              deleteNote(idx)
+           }}
+           className='mt-3 bg-red-500 font-bold text-white py-1 text-xs rounded-2xl w-full'>Delete</button>
           </div>
          })}
          
