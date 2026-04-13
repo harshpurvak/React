@@ -1,1 +1,1 @@
-react minis .
+react minis 
